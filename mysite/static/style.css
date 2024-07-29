@@ -1,0 +1,27 @@
+li a {
+    color: white;
+
+}
+
+h1 {
+    black;
+}
+
+body {
+    width: 100%;
+    background-color: rgba(240, 229, 223,0.5) ;
+
+}
+
+.meio {
+    width: 100%;
+    background-color: gray;
+    padding: 70px 15px;
+    text-align: rigth;
+    height: 300px;
+}
+
+.center{
+    text-align: rigth;
+    padding: 0px 600px;
+}

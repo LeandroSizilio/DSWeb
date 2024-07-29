@@ -1,10 +1,16 @@
+{% load static %}
+
+
 <html>
     <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
         <title>App Enquetes</title>
     </head>
     <body>
         <h1>Aplicação de Enquetes - DSWeb 2024.1</h1>
         <h2>Enquete #{{ pergunta.id }}</h2>
+        <div class = "meio">
+            <div class = "center">
         <h2>{{ pergunta.texto }}</h2>
         <p><i>{{ pergunta.data_pub }}</i></p>
         {% if error %}
@@ -29,5 +35,7 @@
         </form>
         <hr>
         <a href="{% url 'enquetes:index' %}">Voltar</a>
+        </div>
+        </div>
     </body>
 </html>
