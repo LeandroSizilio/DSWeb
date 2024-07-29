@@ -1,5 +1,5 @@
-# vim: set ft=rst:
+# Projeto da 1ª Unidade da Disciplina DSWEB 2024.1 !
 
-See https://help.pythonanywhere.com/ (or click the "Help" link at the top
-right) for help on how to use PythonAnywhere, including tips on copying and
-pasting from consoles, and writing your own web applications.
+##1. Implementação do aplicativo Enquetes
+
+##2. Formatação CSS
