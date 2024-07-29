@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['leandrosizilio.pythonanywhere.com', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
+    'raiz.apps.RaizConfig',
     'enquetes.apps.EnquetesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
