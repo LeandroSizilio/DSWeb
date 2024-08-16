@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('raiz.urls')),
     path('enquetes/', include('enquetes.urls')),
+    path('bazar/', include('bazar.urls')),
 
 ]

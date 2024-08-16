@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['leandrosizilio.pythonanywhere.com', 'localhost']
 STATIC_URL = '/static/'
 
 INSTALLED_APPS = [
+    'bazar.apps.BazarConfig',
     'raiz.apps.RaizConfig',
     'enquetes.apps.EnquetesConfig',
     'django.contrib.admin',
