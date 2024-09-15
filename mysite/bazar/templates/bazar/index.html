@@ -1,12 +1,95 @@
 {% load static %}
 
 
-<html>
-    <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        <title>Bazar de caridade</title>
-    </head>
-    <body>
-        <h1>Itens do Bazar</h1>
-    </body>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BARzar</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'bazar/style_bazar.css' %}">
+    
+</head>
+
+<body>
+    <header id="cabecalho" class="borda0">
+        <div class="borda0 header-div header-div-left">
+            <a href="index.html"><h1 class="logo">BARZAR</h1></a>
+    
+        </div>
+        <div class="borda0 header-div-right">
+            <a href="login.html"><button id="header-login" class="button-header">Entrar
+            </button></a>
+        </div>
+    </header>
+    <div class="evento">
+        <h1>EVENTOS</h1>
+        <div class="left-evento"></div>
+            <a href="login.html"><button class="button-evento">Criar Evento
+            </button></a>
+        </div>
+    </div>  
+        <main class="page-content">
+            <div class="card">
+            <div class="content">
+                <h2 class="title">Mountain View</h2>
+                <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+                <button class="btn">View Trips</button>
+            </div>
+            </div>
+            <div class="card">
+            <div class="content">
+                <h2 class="title">To The Beach</h2>
+                <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+                <button class="btn">View Trips</button>
+            </div>
+            </div>
+            <div class="card">
+            <div class="content">
+                <h2 class="title">Desert Destinations</h2>
+                <p class="copy">It's the desert you've always dreamed of</p>
+                <button class="btn">Book Now</button>
+            </div>
+            </div>
+            <div class="card">
+            <div class="content">
+                <h2 class="title">Explore The Galaxy</h2>
+                <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+                <button class="btn">Book Now</button>
+            </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                <h2 class="title">Mountain View</h2>
+                <p class="copy">Check out all of these gorgeous mountain trips with beautiful views of, you guessed it, the mountains</p>
+                <button class="btn">View Trips</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                <h2 class="title">To The Beach</h2>
+                <p class="copy">Plan your next beach trip with these fabulous destinations</p>
+                <button class="btn">View Trips</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                <h2 class="title">Desert Destinations</h2>
+                <p class="copy">It's the desert you've always dreamed of</p>
+                <button class="btn">Book Now</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="content">
+                <h2 class="title">Explore The Galaxy</h2>
+                <p class="copy">Seriously, straight up, just blast off into outer space today</p>
+                <button class="btn">Book Now</button>
+                </div>
+            </div>
+        
+        </main>
+    <footer>
+        <p>Meu Rodapé</p>
+    </footer>
+</body>
 </html>

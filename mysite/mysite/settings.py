@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-f^a6nsc#^6p1)v78ch7x0u(#ow$98^tn^fyn1de76+=(zs(h*=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['leandrosizilio.pythonanywhere.com', 'localhost']
-
+# ALLOWED_HOSTS = ['leandrosizilio.pythonanywhere.com', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -134,3 +134,4 @@ MEDIA_ROOT = '/home/leandrosizilio/mysite/media'
 MEDIA_URL = '/media/'
 STATIC_ROOT = '/home/leandrosizilio/mysite/static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = ['bazar/static']
