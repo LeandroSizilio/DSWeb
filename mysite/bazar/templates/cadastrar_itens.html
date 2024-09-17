@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastrar Item</title>
+</head>
+<body>
+    <h1>Cadastrar Item</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="descricao">Descrição:</label>
+        <input type="text" id="descricao" name="descricao">
+
+
+        <label for="preco">Preço:</label>
+        <input type="number" id="preco" name="preco">
+
+
+        <label for="foto">Foto:</label>
+        <input type="file" id="foto" name="foto">
+
+
+        <label for="evento">Evento:</label>
+        <select id="evento" name="evento">
+            {% for evento in eventos %}
+                <option value="{{ evento.id }}">{{ evento.nome }}</option>
+            {% endfor %}
+        </select>
+
+
+        <input type="submit" value="Cadastrar">
+    </form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Itens</title>
+</head>
+<body>
+    <h1>Itens</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="pesquisa">Pesquisar:</label>
+        <input type="text" id="pesquisa" name="pesquisa">
+        <input type="submit" value="Pesquisar">
+    </form>
+    <ul>
+        {% for item in itens %}
+            <li>
+                {{ item.descricao }} - {{ item.preco }}
+                {% if item.reservado %}
+                    (Reservado)
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

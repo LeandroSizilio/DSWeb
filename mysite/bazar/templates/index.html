@@ -14,12 +14,30 @@
 <body>
     <header id="cabecalho" class="borda0">
         <div class="borda0 header-div header-div-left">
-            <a href="index.html"><h1 class="logo">BARZAR</h1></a>
+            <a href="/bazar"><h1 class="logo">BARZAR</h1></a>
     
         </div>
         <div class="borda0 header-div-right">
-            <a href="login.html"><button id="header-login" class="button-header">Entrar
+            {% if request.user.is_authenticated %}
+        
+            <div id="usuario-logado" class="borda2">
+                {{ request.user.username }}!
+            </div>
+            
+            <div id="logout" class="borda2">
+                <form method="post" action="{% url 'bazar:logout' %}" style="display: inline;">
+                  {% csrf_token %}
+                <button class="button-header" type="submit">Sair</button>
+                </form>
+            </div>
+        
+            {% else %}
+
+            <a href="/bazar/login/"><button id="header-login" class="button-header">Entrar
             </button></a>
+
+        {% endif %}
+            
         </div>
     </header>
     <div class="evento">
