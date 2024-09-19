@@ -12,30 +12,28 @@
         <div id="main" class="borda0">
 
             <div id="main-cabecalho" class="borda0">
-    
+
                 <div id="cabecalho" class="borda0">
-                    <img src="{% static 'enquetes/img/dswebnot.png' %}" alt="">
                     <h1>Aplicação de Enquetes - DsWeb 2024.1</h1>
                 </div>
-    
+
                 <div id="cabecalho-corpo" class="borda0">
                     <div id="parcial">
-                        <img src="{% static 'enquetes/img/resultado.png' %}" alt="">
                         <h2>Paricial da Enquete #{{pergunta.id}}</h2>
                     </div>
                     <div id="enquete" class="borda0">
                         <h2>{{pergunta.texto}}</h2>
                     </div>
                 </div>
-    
+
             </div>
-    
+
             <div id="main-corpo" class="borda0">
-    
+
                 <div id="corpo-cabecalho" class="borda0">
                     <h2>Quantidades de votos em cada alternativa:</h2>
                 </div>
-    
+
                 <div id="corpo-lista" class="borda0">
                     <ul>
                         {%for alt in pergunta.alternativa_set.all %}
@@ -45,11 +43,11 @@
                     {%endfor %}
                     </ul>
                 </div>
-    
+
             </div>
-    
+
             <button id="votar" onclick="location.href='{% url 'enquetes:detalhes' pergunta.id %}'">Votar Novamente?</button>
-            <button id="voltar" onclick="location.href='{% url 'enquetes:index' %}'">Voltar</button>   
+            <button id="voltar" onclick="location.href='{% url 'enquetes:index' %}'">Voltar</button>
         </div>
 
     </body>

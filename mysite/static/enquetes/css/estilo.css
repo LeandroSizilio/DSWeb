@@ -5,7 +5,7 @@ body {
     max-width: 1920px;
     min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
     background-color: rgb(132, 169, 140);
-    color: rgb(255, 255, 0);
+    color: rgb(0, 0, 0);
 }
 
 

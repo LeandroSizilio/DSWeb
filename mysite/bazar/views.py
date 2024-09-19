@@ -1,5 +1,3 @@
-import re
-from math import floor
 from bazar.forms import ClienteForm
 from django.views import View
 from bazar.models import Cliente, Evento, Item
@@ -21,8 +19,11 @@ class BazarIndex(View):
         cliente = None
 
         if request.user.is_authenticated:
+            try:
+                cliente = Cliente.objects.get(user=request.user)
+            except Cliente.DoesNotExist:
 
-            cliente = Cliente.objects.get(user=request.user)
+                pass
 
         eventos = Evento.objects.filter(data_fim__gt=timezone.now()).order_by('data_fim')
 
@@ -189,48 +190,30 @@ class DeletePerfilView(View):
 
 class ItensEventoView(View):
 
-        def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-            id_evento = kwargs.get('id')
+        id_evento = kwargs.get('id')
 
-            evento = Evento.objects.get(id=id_evento)
+        evento = Evento.objects.get(id=id_evento)
 
-            itens = Item.objects.filter(evento=evento)
+        itens = Item.objects.filter(evento=evento)
 
-            cliente = None
+        cliente = None
 
-            if request.user.is_authenticated:
+        if request.user.is_authenticated:
+            try:
+                cliente = Cliente.objects.get(user=request.user)
+            except Cliente.DoesNotExist:
+                # Você pode criar um cliente aqui se necessário
+                pass
 
-                user_cliente = request.user
+        contexto = {
+            'evento': evento,
+            'itens': itens,
+            'cliente': cliente,
+        }
 
-                cliente = Cliente.objects.get(user=user_cliente)
-
-            contexto = {
-                'evento': evento,
-                'itens': itens,
-                'cliente': cliente,
-            }
-
-            return render(request, "ver_evento.html", context=contexto)
-
-        # @method_decorator(login_required)
-        # def post(self, request, *args, **kwargs):
-
-        #     form = ItemForm(request.POST, request.FILES)
-
-        #     if form.is_valid():
-
-        #         form.save()
-
-        #         return HttpResponseRedirect(reverse('bazar:bazar_index'))
-
-        #     else:
-
-        #         print(form.errors)
-
-        #         form_item = ItemForm()
-
-        #         return render(request, 'item.html', context={'item': form_item})
+        return render(request, "ver_evento.html", context=contexto)
 
 
 class EventoView(View):
@@ -282,24 +265,25 @@ class EventoView(View):
 
 class ItensView(View):
 
-        def get(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
 
-            itens = Item.objects.all()
+        itens = Item.objects.all()
 
-            cliente = None
+        cliente = None
 
-            if request.user.is_authenticated:
+        if request.user.is_authenticated:
+            try:
+                cliente = Cliente.objects.get(user=request.user)
+            except Cliente.DoesNotExist:
+                # Você pode criar um cliente aqui se necessário
+                pass
 
-                user_cliente = request.user
+        contexto = {
+            'itens': itens,
+            'cliente': cliente,
+        }
 
-                cliente = Cliente.objects.get(user=user_cliente)
-
-            contexto = {
-                'itens': itens,
-                'cliente': cliente,
-            }
-
-            return render(request, "itens.html", context=contexto)
+        return render(request, "itens.html", context=contexto)
 
 
         def post(self, request, *args, **kwargs):
@@ -349,14 +333,4 @@ class ReservarView(View):
         referer_url = request.META.get('HTTP_REFERER', reverse('bazar:bazar_index'))
 
         return HttpResponseRedirect(referer_url)
-
-
-
-
-
-
-
-
-
-
 

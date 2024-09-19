@@ -4,13 +4,13 @@ body {
     width: 100%;
     max-width: 1366px;
     min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
-    background-color: rgb(187, 129, 226);
-    color: rgb(255, 255, 0);
+    background-color: rgb(132, 169, 140);
+    color: rgb(0, 0, 0);
 }
 
 a{
     text-decoration: none;
-    color: rgb(255, 255, 0);
+    color: rgb(255, 255, 255);
 }
 
 a:hover{
@@ -41,7 +41,7 @@ a:hover{
     display: flex;
     align-items: center;
     margin-bottom: 1px;
-} 
+}
 
 #main-cabecalho img {
     width: 250px;
