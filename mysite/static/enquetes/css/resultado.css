@@ -1,0 +1,109 @@
+body {
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    max-width: 1366px;
+    min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
+    background-color: rgb(187, 129, 226);
+    color: rgb(255, 255, 0);
+}
+
+.borda0{
+    border: none;
+}
+
+.borda1{
+    border: 1px solid #000;
+    padding: 1px;
+}
+
+.borda2{
+    border: 1px solid #f00;
+    padding: 1px;
+}
+
+
+#cabecalho {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1px;
+} 
+
+#cabecalho img {
+    width: 250px;
+    height: auto;
+    padding: 2px;
+}
+
+#cabecalho h1 {
+    font-size: 45px;
+}
+
+#parcial{
+    display: flex;
+}
+
+#parcial img {
+    width: 100px;
+    height: auto;
+    padding: 10px;
+}
+
+#parcial h2 {
+    font-size: 35px;
+    margin-top: 40px;
+}
+
+#enquete{
+    padding: 5px;
+}
+
+ul{
+    flex-direction: column;
+}
+
+li{
+    cursor: pointer;
+    display: block;
+    padding: 5px 10px;
+    font-size: 20px;
+}
+
+li:hover{
+    font-weight: bolder;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background-color: rgba(101, 193, 214, 1);
+    border: none;
+    padding: 5px 5px;
+    margin: 5px 5px;
+    width: 200px;
+
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 60px; /* Completely round edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: none;
+
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+button:hover {
+    background-color: rgba(20, 156, 178, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+}
+
+button:active {
+    background-color: rgba(255, 100, 110, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}

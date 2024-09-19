@@ -1,25 +1,42 @@
 {% load static %}
 
-
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        <title>DSWeb 2024.1</title>
+        <title>DsWeb 2024.1</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'raiz/css/apps.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'raiz/css/estilo.css' %}">
     </head>
-    <body>
-        <h1>Disciplina DSWeb 2024.1</h1>
-        <div class = "meio">
-            <div class = "center">
-        <h3>Aplicações Criadas:</h3>
-        <ol>
-            <li><a href="/enquetes/">
-                Aplicação de Enquetes
-            </a></li>
-            <li><a href="/bazar/"</li>
-                Bazar de caridade
-            </a>
-        </ol>
+
+<body>
+    <div id="main" class="borda0">
+        <div id="main-cabecalho" class="borda0">
+            <img src="{% static 'raiz/img/dswebnot.png' %}" alt="">
+            <h1>Disciplina DsWeb 2024.1</h1>
+        </div>
+        <div id="detalhes-corpo" class="borda0">
+            <div id="primeira-linha">
+                <img src="{% static 'raiz/img/aluno.png' %}" alt="prancheta">
+                <h2>
+                    Aluno: Felipe da Costa Ferreira
+                </h2>
+            </div>
+            <div id="segunda-linha">
+                <img src="{% static 'raiz/img/professor.png' %}" alt="ideia">
+                <h2>Professor: Fellipe Aleixo</h2>
             </div>
         </div>
-    </body>
+        <div id="main-corpo">
+            <h2>Aplicações criadas: </h2>
+            <ol>
+                <li><a href="/enquetes/">
+                    Aplicação de Enquetes
+                </a></li>
+                <li><a href="/bazar/">
+                    Aplicação de Bazar
+                </a></li>
+            </ol>
+        </div>
+    </div>
+
+</body>
 </html>

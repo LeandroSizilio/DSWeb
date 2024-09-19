@@ -14,7 +14,7 @@ from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 
 
-class IndexView(View):
+class BazarIndex(View):
 
     def get(self, request, *args, **kwargs):
 
@@ -31,7 +31,7 @@ class IndexView(View):
             'eventos': eventos
         }
 
-        return render(request, 'index.html', context=contexto)
+        return render(request, 'bazar_index.html', context=contexto)
    
 
 class CadastroView(View):
@@ -86,7 +86,7 @@ class LogarView(View):
             if usuario is not None:
                 login(request, usuario)
 
-                return redirect(reverse('bazar:index'))
+                return redirect(reverse('bazar:bazar_index'))
             
             else:
                 messages.error(request, 'O usuario não existe.')
@@ -102,12 +102,90 @@ class LogarView(View):
 class LogoutView(View):
         
         @method_decorator(login_required)
-        def post(self, request, *args, **kwargs):
+        def get(self, request, *args, **kwargs):
 
             logout(request)
 
-            return HttpResponseRedirect(reverse('bazar:index'))
+            return HttpResponseRedirect(reverse('bazar:bazar_index'))
+        
 
+class EditarPerfilView(View):
+
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        
+        if request.user.is_authenticated:
+
+            form = ClienteForm()
+
+            return render(request, "editar.html", context={'form':form})
+
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+
+        if request.user.is_authenticated :
+
+            form = ClienteForm(request.POST)
+
+            if form.is_valid():
+
+                usuario = request.user
+                
+                nome = form.cleaned_data['nome']
+
+                nome_login = form.cleaned_data['login']
+                
+                senha = form.cleaned_data['senha']
+
+                cliente = Cliente.objects.get(user=usuario)
+                
+                if nome is not '' and nome is not None:
+                    cliente.nome = nome
+
+                if nome_login is not '' and nome_login is not None:
+
+                    cliente.user.username = nome_login
+
+                    cliente.login = nome_login
+                
+                if senha is not '' and senha is not None:
+
+                    cliente.senha = senha
+
+                    cliente.user.set_password(senha) 
+
+                cliente.user.save() 
+
+                cliente.save()
+
+                update_session_auth_hash(request, cliente.user)
+
+                return HttpResponseRedirect(reverse('bazar:bazar_index'))
+            
+            else:
+                return HttpResponseRedirect(reverse('bazar:editar'))
+                     
+        
+class DeletePerfilView(View):
+        
+        @method_decorator(login_required)
+        def get(self, request, *args, **kwargs):
+
+            if request.user.is_authenticated:
+
+                usuario_nome = request.user.username
+
+                usuario_removido = User.objects.get(username=usuario_nome)
+
+                usuario_removido.delete()
+
+                return HttpResponseRedirect(reverse('dama:index'))
+            
+            else:
+                messages.error(request, 'Não foi possível deletar a conta')
+
+                return render(request, "perfil.html")
+ 
 
 class ItensEventoView(View):
         
@@ -134,7 +212,26 @@ class ItensEventoView(View):
             }
 
             return render(request, "ver_evento.html", context=contexto)
-           
+        
+        # @method_decorator(login_required)
+        # def post(self, request, *args, **kwargs):
+
+        #     form = ItemForm(request.POST, request.FILES)
+
+        #     if form.is_valid():
+
+        #         form.save()
+
+        #         return HttpResponseRedirect(reverse('bazar:bazar_index'))
+            
+        #     else:
+
+        #         print(form.errors)
+
+        #         form_item = ItemForm()
+
+        #         return render(request, 'item.html', context={'item': form_item})
+            
 
 class EventoView(View):
         
@@ -176,7 +273,7 @@ class EventoView(View):
 
                 evento.save()
 
-                return HttpResponseRedirect(reverse('bazar:index'))
+                return HttpResponseRedirect(reverse('bazar:bazar_index'))
             
             else:
 
@@ -249,9 +346,10 @@ class ReservarView(View):
 
             item.save()
 
-        referer_url = request.META.get('HTTP_REFERER', reverse('bazar:index'))
+        referer_url = request.META.get('HTTP_REFERER', reverse('bazar:bazar_index'))
 
         return HttpResponseRedirect(referer_url)
+
 
 
 
