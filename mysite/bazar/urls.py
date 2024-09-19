@@ -6,11 +6,6 @@ from django.urls import path
 app_name = 'bazar'
 
 urlpatterns = [
-<<<<<<< HEAD
-    path('', views.IndexView.as_view(), name='index'),
-    path('bazar/<int:pk>/', views.BazarView.as_view(), name='Bazar'),
-]
-=======
     path('', views.BazarIndex.as_view(), name='bazar_index'),
 
     path('login/', views.LogarView.as_view(), name='login'),
@@ -34,4 +29,3 @@ urlpatterns = [
 
 
 
->>>>>>> 53f48724cf5b4c8025cfa5fccc0041d11ce3f255

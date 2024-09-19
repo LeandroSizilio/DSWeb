@@ -2,9 +2,9 @@ body {
     justify-content: center;
     margin: 0;
     width: 100%;
-    max-width: 1366px;
+    max-width: 1920px;
     min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
-    background-color: rgb(187, 129, 226);
+    background-color: rgb(132, 169, 140);
     color: rgb(255, 255, 0);
 }
 
@@ -27,7 +27,7 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 1px;
-} 
+}
 
 #cabecalho img {
     width: 250px;
@@ -100,7 +100,7 @@ button {
 button:hover {
     background-color: rgba(20, 156, 178, 1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    
+
 }
 
 button:active {

@@ -1,13 +1,8 @@
-<<<<<<< HEAD
-from django.shortcuts import render, get_object_or_404
-from django.views import View
-from models import Bazar
-=======
 import re
 from math import floor
-from bazar.forms import *
+from bazar.forms import ClienteForm
 from django.views import View
-from bazar.models import Evento
+from bazar.models import Cliente, Evento, Item
 from django.utils import timezone
 from django.urls import reverse
 from django.contrib import messages
@@ -17,7 +12,6 @@ from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, HttpResponseRedirect, redirect
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
->>>>>>> 53f48724cf5b4c8025cfa5fccc0041d11ce3f255
 
 
 class BazarIndex(View):
@@ -27,8 +21,8 @@ class BazarIndex(View):
         cliente = None
 
         if request.user.is_authenticated:
-             
-             cliente = Cliente.objects.get(user=request.user)
+
+            cliente = Cliente.objects.get(user=request.user)
 
         eventos = Evento.objects.filter(data_fim__gt=timezone.now()).order_by('data_fim')
 
@@ -38,7 +32,7 @@ class BazarIndex(View):
         }
 
         return render(request, 'bazar_index.html', context=contexto)
-   
+
 
 class CadastroView(View):
 
@@ -47,9 +41,9 @@ class CadastroView(View):
         form = ClienteForm()
 
         return render(request, "cadastro.html", {'form': form})
-    
+
     def post(self, request, *args, **kwargs):
-        
+
         form = ClienteForm(request.POST)
 
         if form.is_valid():
@@ -67,11 +61,11 @@ class CadastroView(View):
             cliente.save()
 
             return HttpResponseRedirect(reverse('bazar:login'))
-        
+
         else:
             form = ClienteForm()
 
-            return render(request, "cadastro.html", {'form': form}) 
+            return render(request, "cadastro.html", {'form': form})
 
 
 class LogarView(View):
@@ -93,12 +87,12 @@ class LogarView(View):
                 login(request, usuario)
 
                 return redirect(reverse('bazar:bazar_index'))
-            
+
             else:
                 messages.error(request, 'O usuario não existe.')
 
                 return render(request, 'login.html')
-            
+
         else:
             messages.error(request, 'Insira os dados obrigatorios.')
 
@@ -106,30 +100,20 @@ class LogarView(View):
 
 
 class LogoutView(View):
-        
+
         @method_decorator(login_required)
         def get(self, request, *args, **kwargs):
 
             logout(request)
 
             return HttpResponseRedirect(reverse('bazar:bazar_index'))
-        
+
 
 class EditarPerfilView(View):
 
     @method_decorator(login_required)
     def get(self, request, *args, **kwargs):
-<<<<<<< HEAD
-        return render(request,'bazar/index.html')
 
-class BazarView(View):
-    def get(self, request, *args, **kwargs):
-        id_bazar = kwargs ['pk']
-        bazar = get_object_or_404(Bazar, pk=id_bazar)
-        contexto = {'bazar': bazar}
-        return render(request, 'bazar/bazar.html', contexto)
-=======
-        
         if request.user.is_authenticated:
 
             form = ClienteForm()
@@ -146,44 +130,44 @@ class BazarView(View):
             if form.is_valid():
 
                 usuario = request.user
-                
+
                 nome = form.cleaned_data['nome']
 
                 nome_login = form.cleaned_data['login']
-                
+
                 senha = form.cleaned_data['senha']
 
                 cliente = Cliente.objects.get(user=usuario)
-                
-                if nome is not '' and nome is not None:
+
+                if nome != '' and nome is not None:
                     cliente.nome = nome
 
-                if nome_login is not '' and nome_login is not None:
+                if nome_login != '' and nome_login is not None:
 
                     cliente.user.username = nome_login
 
                     cliente.login = nome_login
-                
-                if senha is not '' and senha is not None:
+
+                if senha != '' and senha is not None:
 
                     cliente.senha = senha
 
-                    cliente.user.set_password(senha) 
+                    cliente.user.set_password(senha)
 
-                cliente.user.save() 
+                cliente.user.save()
 
                 cliente.save()
 
                 update_session_auth_hash(request, cliente.user)
 
                 return HttpResponseRedirect(reverse('bazar:bazar_index'))
-            
+
             else:
                 return HttpResponseRedirect(reverse('bazar:editar'))
-                     
-        
+
+
 class DeletePerfilView(View):
-        
+
         @method_decorator(login_required)
         def get(self, request, *args, **kwargs):
 
@@ -196,16 +180,16 @@ class DeletePerfilView(View):
                 usuario_removido.delete()
 
                 return HttpResponseRedirect(reverse('dama:index'))
-            
+
             else:
                 messages.error(request, 'Não foi possível deletar a conta')
 
                 return render(request, "perfil.html")
- 
+
 
 class ItensEventoView(View):
-        
-        def get(self, request, *args, **kwargs): 
+
+        def get(self, request, *args, **kwargs):
 
             id_evento = kwargs.get('id')
 
@@ -228,7 +212,7 @@ class ItensEventoView(View):
             }
 
             return render(request, "ver_evento.html", context=contexto)
-        
+
         # @method_decorator(login_required)
         # def post(self, request, *args, **kwargs):
 
@@ -239,7 +223,7 @@ class ItensEventoView(View):
         #         form.save()
 
         #         return HttpResponseRedirect(reverse('bazar:bazar_index'))
-            
+
         #     else:
 
         #         print(form.errors)
@@ -247,12 +231,12 @@ class ItensEventoView(View):
         #         form_item = ItemForm()
 
         #         return render(request, 'item.html', context={'item': form_item})
-            
+
 
 class EventoView(View):
-        
+
         @method_decorator(login_required)
-        def get(self, request, *args, **kwargs): 
+        def get(self, request, *args, **kwargs):
 
             evento_form = EventoForm()
 
@@ -265,7 +249,7 @@ class EventoView(View):
 
             return render(request, 'evento.html', context=contexto)
 
-        
+
         @method_decorator(login_required)
         def post(self, request, *args, **kwargs):
 
@@ -280,7 +264,7 @@ class EventoView(View):
 
                 # Salva os itens
                 for form in itens_forms:
-                    
+
                     item = form.save(commit=False)
 
                     item.evento = evento
@@ -290,15 +274,15 @@ class EventoView(View):
                 evento.save()
 
                 return HttpResponseRedirect(reverse('bazar:bazar_index'))
-            
+
             else:
 
                 return render(request, 'evento.html', context={'evento_form': evento_form, 'form_itens': itens_forms})
 
 
 class ItensView(View):
-        
-        def get(self, request, *args, **kwargs): 
+
+        def get(self, request, *args, **kwargs):
 
             itens = Item.objects.all()
 
@@ -316,12 +300,12 @@ class ItensView(View):
             }
 
             return render(request, "itens.html", context=contexto)
-        
+
 
         def post(self, request, *args, **kwargs):
 
             dados_pesquisa = request.POST
-            
+
             contexto = {}
 
             if 'pesquisa' in dados_pesquisa:
@@ -331,7 +315,7 @@ class ItensView(View):
                 if pesquisa_item != '':
 
                     itens = Item.objects.filter(descricao__icontains=pesquisa_item)
-                    
+
                     contexto['itens'] = itens
 
                 else:
@@ -339,7 +323,7 @@ class ItensView(View):
                     contexto['itens'] = Item.objects.all()
 
                 contexto['status'] = 'sucesso'
-                
+
             else:
 
                 contexto['status'] = 'erro'
@@ -376,4 +360,3 @@ class ReservarView(View):
 
 
 
->>>>>>> 53f48724cf5b4c8025cfa5fccc0041d11ce3f255
