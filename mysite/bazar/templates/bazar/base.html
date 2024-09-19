@@ -1,0 +1,28 @@
+{% load static %}
+
+
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <title>Bazar de caridade</title>
+        {% block head %}
+
+        {% endblock %}
+    </head>
+    <body>
+        <h1>Aplicação bazar</h1>
+        {% block conteudo %}
+
+
+
+        {% endblock %}
+        <hr>
+        {% block menu %}
+
+        <a href="{% url 'bazar:index' %}"> Raiz</a>
+
+        {% endblock %}
+
+        &copy; Itens do Bazar
+    </body>
+</html>

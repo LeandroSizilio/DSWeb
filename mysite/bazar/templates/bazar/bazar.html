@@ -1,0 +1,50 @@
+{% extends 'bazar/base.html' %}
+
+{% block conteudo %}
+    <<logo>>
+
+    <h1> PLANO EDUCACIONAL INDIVIDUAL - PEI </h1>
+    <ol>
+        <li><u>Estudante</u>: {{ bazar.aluno.nome}}
+        ({{ bazar.aluno.matricula }})
+
+        </li>
+        <li><u>Diretoria Acadêmica</u>: {{ bazar.aluno.diretoriaacademica.sigla }}</li>
+    </ol>
+    <h2>INFORMAÇÕES GERAIS</h2>
+    <h3>1. Conhecimento </h3>
+    {% if bazar.possui_conhecimentos %}
+        <dl>
+        {% for c in bazar.lista_conhecimentos %}
+            <dt>{{ c.titulo }} </dt>
+            <dt>{{ c.descricao }}</dt>
+        {% endfor %}
+        </dl>
+    {% else %}
+        Nenhum conhecimento cadastrado até o momento.
+
+
+    <h3>2. Capacidade </h3>
+    {% if bazar.possui_capacidades %}
+        <dl>
+        {% for a in bazar.lista_capacidades %}
+            <dt>{{ a.titulo }} </dt>
+            <dt>{{ a.descricao }}</dt>
+        {% endfor %}
+        </dl>
+    {% else %}
+        Nenhum capacidade cadastrado até o momento.
+
+
+    <h3>3. Habilidade </h3>
+    {% if bazar.possui_habilidades %}
+        <dl>
+        {% for h in bazar.lista_habilidades %}
+            <dt>{{ h.titulo }} </dt>
+            <dt>{{ h.descricao }}</dt>
+        {% endfor %}
+        </dl>
+    {% else %}
+        Nenhum habilidade cadastrado até o momento
+
+{% endblock %}
