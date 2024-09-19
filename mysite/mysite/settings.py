@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,28 +20,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f^a6nsc#^6p1)v78ch7x0u(#ow$98^tn^fyn1de76+=(zs(h*='
+SECRET_KEY = 'django-insecure-4sf+8*s#*cxl0quam6h5p=%vn2byusi8&ujuwhj+(1c=!vqu(('
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['leandrosizilio.pythonanywhere.com', 'localhost']
+# ALLOWED_HOSTS = ['FelipeCF.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
-STATIC_URL = '/static/'
-
 INSTALLED_APPS = [
-    'bazar.apps.BazarConfig',
-    'raiz.apps.RaizConfig',
     'enquetes.apps.EnquetesConfig',
+    'raiz.apps.RaizConfig',
+    'bazar.apps.BazarConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django_bootstrap_v5'
 ]
 
 MIDDLEWARE = [
@@ -109,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'UTC'
 
@@ -118,19 +117,18 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
-
 STATIC_URL = 'static/'
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# default static files settings for PythonAnywhere.
-# see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = '/home/leandrosizilio/mysite/media'
 MEDIA_URL = '/media/'
-STATIC_ROOT = '/home/leandrosizilio/mysite/static'
+MEDIA_ROOT = '/home/FelipeCF/mysite/media'
+# MEDIA_ROOT = 'C:\\Users\\OMoral\\Desktop\\CODIGOS\\pythonanywhere---dsweb\\mysite\\media'
+# MEDIA_ROOT = 'C:\\Users\\20231014040005\\Desktop\\pythonanywhere---dsweb\\mysite\\media'
+# MEDIA_ROOT = 'C:\\Users\\FelipeCosta\\Desktop\\teste\\pythonanywhere---dsweb\\mysite\\media'
+# STATIC_ROOT = 'C:\\Users\\OMoral\\Desktop\\CODIGOS\\pythonanywhere---dsweb\\mysite\\static'
 STATIC_URL = '/static/'
+STATIC_ROOT = '/home/FelipeCF/mysite/static'
+
+LOGIN_URL = 'login/'

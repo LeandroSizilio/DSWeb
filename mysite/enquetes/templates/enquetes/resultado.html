@@ -1,31 +1,56 @@
 {% load static %}
 
-
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
-        <title>App Enquetes</title>
+        <title>
+            App Enquetes
+        </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'enquetes/css/resultado.css' %}">
     </head>
+
     <body>
-        <h1>Aplicação de Enquetes - DSWeb 2024.1</h1>
-        <h2>PARCIAL da Enquete #{{ pergunta.id }}</h2>
-        <div class = "meio">
-            <div class = "center">
-        <h2>{{ pergunta.texto }}</h2>
-        <p><i>{{ pergunta.data_pub }}</i></p>
-        <p>Quantidade de votos por alternativas:</p>
-        <ul>
-          {% for alt in pergunta.alternativa_set.all %}
-            <li>
-              {{ alt.texto }} == {{ alt.quant_votos }}
-              voto{{ alt.quant_votos | pluralize }}
-            </li>
-          {% endfor %}
-        </ul>
-        <hr>
-        <a href="{% url 'enquetes:detalhes' pergunta.id %}">Votar novamente?</a> |
-        <a href="{% url 'enquetes:index' %}">Voltar</a>
+        <div id="main" class="borda0">
+
+            <div id="main-cabecalho" class="borda0">
+    
+                <div id="cabecalho" class="borda0">
+                    <img src="{% static 'enquetes/img/dswebnot.png' %}" alt="">
+                    <h1>Aplicação de Enquetes - DsWeb 2024.1</h1>
+                </div>
+    
+                <div id="cabecalho-corpo" class="borda0">
+                    <div id="parcial">
+                        <img src="{% static 'enquetes/img/resultado.png' %}" alt="">
+                        <h2>Paricial da Enquete #{{pergunta.id}}</h2>
+                    </div>
+                    <div id="enquete" class="borda0">
+                        <h2>{{pergunta.texto}}</h2>
+                    </div>
+                </div>
+    
+            </div>
+    
+            <div id="main-corpo" class="borda0">
+    
+                <div id="corpo-cabecalho" class="borda0">
+                    <h2>Quantidades de votos em cada alternativa:</h2>
+                </div>
+    
+                <div id="corpo-lista" class="borda0">
+                    <ul>
+                        {%for alt in pergunta.alternativa_set.all %}
+                        <li>
+                            {{alt.texto}} -- {{ alt.quant_votos }} voto{{alt.quant_votos | pluralize}}
+                        </li>
+                    {%endfor %}
+                    </ul>
+                </div>
+    
+            </div>
+    
+            <button id="votar" onclick="location.href='{% url 'enquetes:detalhes' pergunta.id %}'">Votar Novamente?</button>
+            <button id="voltar" onclick="location.href='{% url 'enquetes:index' %}'">Voltar</button>   
         </div>
-        </div>
+
     </body>
 </html>

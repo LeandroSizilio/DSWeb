@@ -1,0 +1,36 @@
+.page-content {
+    display: grid;
+    grid-gap: 32px;
+    padding: 16px;
+    max-width: 80%;
+    margin-top: 50px;
+    font-family: var(--font-sans);
+    grid-template-columns: repeat(5, 200px);  /* quantidade de cards na linha e sua largura */
+    grid-template-rows: repeat(auto-fill, minmax(150px, 350px)); /* define a altura das linhas */
+    background-color: rgba(132, 169, 140);
+    border-radius: 5px;
+  }
+
+/* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD *//* CARD */
+@import url('https://fonts.googleapis.com/css?family=Cardo:400i|Rubik:400,700&display=swap');
+
+:root {
+  --d: 700ms;
+  --e: cubic-bezier(0.19, 1, 0.22, 1);
+  --font-sans: 'Rubik', sans-serif;
+  --font-serif: 'Cardo', serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  background-color: black;
+}

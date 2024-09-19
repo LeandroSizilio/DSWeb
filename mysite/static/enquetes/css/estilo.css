@@ -1,0 +1,169 @@
+body {
+    justify-content: center;
+    margin: 0;
+    width: 100%;
+    max-width: 1366px;
+    min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
+    background-color: rgb(187, 129, 226);
+    color: rgb(255, 255, 0);
+}
+
+.borda0{
+    border: none;
+}
+
+.borda1{
+    border: 1px solid #000;
+    padding: 1px;
+}
+
+.borda2{
+    border: 1px solid #f00;
+    padding: 1px;
+}
+
+#main {
+    display: flex; 
+    flex-direction: column; 
+    width: 100%;
+    max-width: 100%; /* Garante que o main não ultrapasse a largura disponível */
+    padding: 5px;
+    box-sizing: border-box; /* Inclui padding e bordas na largura total */
+}
+
+#detalhes-div, #form-div, #div-baixo {
+    display: block;
+    height: 100%; /* Faz com que cada div filho tente ocupar 100% da altura */
+    margin-top: 2px;
+    
+}
+
+#detalhes-cabecalho {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1px;
+}
+
+#detalhes-cabecalho img {
+    width: 150px;
+    height: auto;
+}
+
+#detalhes-cabecalho img, h1 {
+    display: inline;
+}
+
+#detalhes-corpo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1px;
+}
+
+#primeira-linha{
+    display: flex;
+    align-items: center;
+    margin-bottom: 1px;
+    
+}
+
+#primeira-linha img {
+    width: 90px;
+    height: auto;
+    margin: 5px;
+    
+}
+
+#primeira-linha h2 {
+    margin: 0;
+    font-size: 30px;
+    
+}
+
+#segunda-linha {
+    display: flex; /* Faz com que o segundo <h2> e o <p> fiquem na mesma linha */
+    align-items: center; /* Alinha verticalmente os itens dentro da linha */
+}
+
+#segunda-linha img {
+    width: 70px;
+    height: auto;
+    margin: 10px;
+}
+
+#segunda-linha p {
+    margin-top: 23px;
+    font-weight: bolder;
+    font-size: 20px;
+}
+
+#segunda-linha h2 {
+    font-size: 25px;
+}
+
+#segunda-linha h2, p {
+    margin-left: 10px;
+}
+
+
+#form-cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#form-cabecalho img{
+    width: 80px;
+    height: auto;
+    margin: 0;
+    padding: 10px;
+}
+
+
+label{
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+#submeter{
+    border: 2px solid black;
+    border-radius: 20px;
+}
+
+button {
+    background-color: rgba(101, 193, 214, 1);
+    border: none;
+    padding: 5px 5px;
+    margin: 5px 5px;
+    width: 200px;
+
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 60px; /* Completely round edges */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, box-shadow 0.3s;
+    background-color: none;
+
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: bolder;
+    font-style: normal;
+}
+
+button:hover {
+    background-color: rgba(20, 156, 178, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+}
+
+button:active {
+    background-color: rgba(255, 100, 110, 0.2);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+    list-style-type: none;
+    font-weight: bolder;
+}

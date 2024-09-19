@@ -1,47 +1,48 @@
+
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
-class Docente (models.Model):
-    matricula = models.CharField(max_length=15)
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+class Cliente(models.Model):
+    nome = models.CharField('Nome do cliente', max_length=100, null=False)
+
+    login = models.CharField('Nome do usuário', max_length=100, null=False)
+
+    senha = models.CharField('Senha', max_length=20, null=False)
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
     def __str__(self):
-        return self.matricula
+        return f"Cliente: {self.nome}"
 
-class ServidorNapne(models.Model):
-    cpf = models.CharField(max_length=11)
-    user = models.OneToOneField(User, on_delete=models.PROTECT)
+
+class Evento(models.Model):
+    id = models.BigAutoField(editable=False, primary_key=True)
+
+    nome = models.CharField('Nome do evento', max_length=100, null=False)
+
+    banner = models.ImageField('Banner', upload_to='fotos/', null=False)
+
+    data_inicio = models.DateTimeField('Inicio do evento', null=False)
+
+    data_fim = models.DateTimeField('Fim do evento',  null=True)
+
     def __str__(self):
-        return self.cpf
+        return f"Evento: {self.nome} - Início: {self.data_inicio} - Fim: {self.data_fim}"
 
-class Aluno(models.Model):
-    nome = models.CharField(max_length=30)
-    matricula = models.CharField(max_length=20)
-    foto = models.ImageField(upload_to='fotos_alunos')
+
+class Item(models.Model):
+    id = models.BigAutoField(editable=False, primary_key=True)
+
+    descricao = models.CharField('Descrição', null=False, max_length=60)
+
+    preco = models.FloatField('Preço', validators=[MinValueValidator(0.0)], null=False)
+
+    foto = models.ImageField('Imagem', upload_to='fotos/', null=False)
+
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, default=None)
+
+    reservado = models.BooleanField('Reservado', default=False)
+
     def __str__(self):
-        return self.nome
-
-class PEI(models.Model):
-    criacao = models.DateField('criação', auto_now_add=True, editable=False)
-    modificacao = models.DateField('modificação', auto_now_add=True)
-    operadores = models.ManyToManyField(ServidorNapne)
-    aluno = models.OneToOneField(Aluno, on_delete=models.CASCADE)
-    def __str__(self):
-        return 'PEI do aluno ', self.aluno.nome
-
-class SemestreLetivo(models.Model):
-    ano = models.IntegerField()
-    periodo = models.IntegerField('período')
-    atual = models.BooleanField(default=True)
-    pei = models.ForeignKey(PEI, on_delete=models.CASCADE)
-    def __str__(self):
-        return '{}.{} '.format(self.ano, self.periodo)
-
-
-
-
-
-
-
-
-
-
+        return f"Item: {self.descricao} - Imagem: {self.foto} - Preço: {self.preco}"
