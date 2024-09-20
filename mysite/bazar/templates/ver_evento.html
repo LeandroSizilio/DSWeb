@@ -36,12 +36,12 @@
     <div class="borda0 header-div-right">
 
       {% if request.user.is_authenticated %}
-      
+
 
       <div id="usuario-logado" class="borda2">
         <p>{{ cliente.nome }}!  </p>
       </div>
-      
+
       <div id="logout" class="borda2">
         <form method="post" action="{% url 'bazar:logout' %}" style="display: inline;">
           {% csrf_token %}
@@ -66,8 +66,8 @@
 
   <main class="page-content">
     {% for item in itens %}
-        
-          
+
+
           <div class="card">
             <img class="card-img-top" src="{{ item.foto.url }}" alt="Item do evento {{ evento.nome }}">
             <div class="card-body">
@@ -82,10 +82,10 @@
                 {% else %}
                 <a href="{% url 'bazar:login'  %}" class="btn btn-warning">Faça login</a>
                 {% endif %}
-              </div>
+             </div>
           </div>
-        
-  
+
+
       {% endfor %}
     </main>
 </body>

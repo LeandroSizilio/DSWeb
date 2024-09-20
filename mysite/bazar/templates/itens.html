@@ -40,12 +40,12 @@
     <div class="borda0 header-div-right">
 
       {% if request.user.is_authenticated %}
-      
+
 
       <div id="usuario-logado" class="borda2">
         <p>{{ cliente.nome }}!  </p>
       </div>
-      
+
       <div id="logout" class="borda2">
         <form method="post" action="{% url 'bazar:logout' %}" style="display: inline;">
           {% csrf_token %}
@@ -70,9 +70,9 @@
 
   <main class="page-content">
     {% for item in itens %}
-        
-          
-          <div class="card">
+
+
+        <div class="card">
             <img class="card-img-top" src="{{ item.foto.url }}" alt="Item do evento {{ evento.nome }}">
             <div class="card-body">
               <h5 class="card-title">{{ item.descricao }}</h5>
@@ -87,17 +87,9 @@
                 {% else %}
                 <a href="{% url 'bazar:login'  %}" class="btn btn-warning">Faça login</a>
                 {% endif %}
-              </div>
-          </div>
-
-          {% if item.reservado %}
-          <p class="card-text"><small class="text-body-secondary">Reservado</small></p>
-        {% else %}
-        
-        <a href="{% url 'bazar:reservar' item.id  %}" class="btn btn-primary">Reservar</a>
-        
-  
-      {% endfor %}
+            </div>
+        </div>
+     {% endfor %}
     </main>
 </body>
 
