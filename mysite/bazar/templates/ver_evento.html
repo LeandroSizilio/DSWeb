@@ -78,7 +78,10 @@
               {% if item.reservado %}
                   <p class="card-text"><div class="text-body-primary">Reservado</div></p>
                 {% else %}
+                {% elif request.user.is_authenticated %}
                 <a href="{% url 'bazar:reservar' item.id  %}" class="button-entrar2">Reservar</a>
+                {% else %}
+                <a href="{% url 'bazar:login'  %}" class="btn btn-primary">Faça login</a>
                 {% endif %}
               </div>
           </div>
