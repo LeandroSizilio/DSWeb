@@ -21,6 +21,7 @@ class BazarIndex(View):
         if request.user.is_authenticated:
             try:
                 cliente = Cliente.objects.get(user=request.user)
+                
             except Cliente.DoesNotExist:
 
                 pass
@@ -101,13 +102,15 @@ class LogarView(View):
 
 
 class LogoutView(View):
+    @method_decorator(login_required)
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(reverse('bazar:bazar_index'))
 
-        @method_decorator(login_required)
-        def get(self, request, *args, **kwargs):
-
-            logout(request)
-
-            return HttpResponseRedirect(reverse('bazar:bazar_index'))
+    @method_decorator(login_required)
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return HttpResponseRedirect(reverse('bazar:bazar_index'))
 
 
 class EditarPerfilView(View):
@@ -222,12 +225,21 @@ class EventoView(View):
         def get(self, request, *args, **kwargs):
 
             evento_form = EventoForm()
+            cliente = None
+
+            if request.user.is_authenticated:
+                try:
+                    cliente = Cliente.objects.get(user=request.user)
+                except Cliente.DoesNotExist:
+
+                    pass
 
             item_formset = ItemFormSet(queryset=Item.objects.none())  # Nenhum item inicialmente
 
             contexto = {
                 'evento_form': evento_form,
                 'form_itens': item_formset,
+                'cliente': cliente,
             }
 
             return render(request, 'evento.html', context=contexto)
@@ -286,33 +298,33 @@ class ItensView(View):
         return render(request, "itens.html", context=contexto)
 
 
-        def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs):
 
-            dados_pesquisa = request.POST
+        dados_pesquisa = request.POST
 
-            contexto = {}
+        contexto = {}
 
-            if 'pesquisa' in dados_pesquisa:
+        if 'pesquisa' in dados_pesquisa:
 
-                pesquisa_item = dados_pesquisa.get('pesquisa')
+            pesquisa_item = dados_pesquisa.get('pesquisa')
 
-                if pesquisa_item != '':
+            if pesquisa_item != '':
 
-                    itens = Item.objects.filter(descricao__icontains=pesquisa_item)
+                itens = Item.objects.filter(descricao__icontains=pesquisa_item)
 
-                    contexto['itens'] = itens
-
-                else:
-
-                    contexto['itens'] = Item.objects.all()
-
-                contexto['status'] = 'sucesso'
+                contexto['itens'] = itens
 
             else:
 
-                contexto['status'] = 'erro'
+                contexto['itens'] = Item.objects.all()
 
-            return render(request, 'itens.html', context=contexto)
+            contexto['status'] = 'sucesso'
+
+        else:
+
+            contexto['status'] = 'erro'
+
+        return render(request, 'itens.html', context=contexto)
 
 
 class ReservarView(View):

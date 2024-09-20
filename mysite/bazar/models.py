@@ -25,6 +25,9 @@ class Evento(models.Model):
     data_inicio = models.DateTimeField('Inicio do evento', null=False)
 
     data_fim = models.DateTimeField('Fim do evento',  null=True)
+    
+    def dataformatada(self):
+        return f"De: {self.data_inicio.strftime('%d-%m')} até {self.data_fim.strftime('%d-%m')}"
 
     def __str__(self):
         return f"Evento: {self.nome} - Início: {self.data_inicio} - Fim: {self.data_fim}"
