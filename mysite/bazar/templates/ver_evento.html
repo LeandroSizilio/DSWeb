@@ -80,7 +80,7 @@
                 {% elif request.user.is_authenticated %}
                 <a href="{% url 'bazar:reservar' item.id  %}" class="button-entrar2">Reservar</a>
                 {% else %}
-                <a href="{% url 'bazar:login'  %}" class="btn btn-primary">Faça login</a>
+                <a href="{% url 'bazar:login'  %}" class="btn btn-warning">Faça login</a>
                 {% endif %}
               </div>
           </div>
