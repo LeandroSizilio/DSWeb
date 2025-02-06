@@ -6,4 +6,4 @@
 
 ## 3. Bazar Comunitário
 
-Acesso por - https://leandrosizilio.pythonanywhere.com/ !
+Acesso por - https://leandrosizilio.pythonanywhere.com/ !!
